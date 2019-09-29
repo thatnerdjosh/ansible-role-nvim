@@ -5,6 +5,7 @@ packages:
   - git
   - ctags
   - neovim
+  - nodejs
   - gcc
   - libc6-compat
 build_packages:
