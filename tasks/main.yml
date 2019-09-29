@@ -33,6 +33,13 @@
   become: true
   become_user: "{{ primary_user }}"
 
+- name: Add coc-settings.json
+  copy:
+    src: "{{ role_path }}/files/coc-settings.json"
+    dest: ~/.config/nvim/coc-settings.json 
+  become: true
+  become_user: "{{ primary_user }}"
+
 - name: Add nvim autoload directory
   file:
     name: ~/.local/share/nvim/site/autoload
