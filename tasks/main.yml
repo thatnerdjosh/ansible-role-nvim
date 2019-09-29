@@ -11,6 +11,15 @@
     state: installed
   with_items: "{{ packages }}"
 
+- name: Install neovim
+  apk:
+    name: "neovim"
+    state: installed
+    repository: 
+      - http://dl-cdn.alpinelinux.org/alpine/edge/community
+      - http://dl-cdn.alpinelinux.org/alpine/edge/testing
+      - http://dl-cdn.alpinelinux.org/alpine/edge/main
+
 - name: Add primary user
   user:
     name: "{{ primary_user }}"

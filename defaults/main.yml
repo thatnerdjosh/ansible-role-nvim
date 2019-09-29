@@ -4,7 +4,6 @@ packages:
   - python-dev
   - git
   - ctags
-  - neovim
   - nodejs
   - yarn
   - gcc
