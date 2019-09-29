@@ -1,0 +1,15 @@
+---
+packages:
+  - python
+  - python-dev
+  - git
+  - ctags
+  - neovim
+  - gcc
+  - libc6-compat
+build_packages:
+  - make
+  - gcc
+  - libc-dev
+  - ncurses-dev
+primary_user: developer

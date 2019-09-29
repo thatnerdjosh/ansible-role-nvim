@@ -1,0 +1,64 @@
+---
+- name: Install build packages
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ build_packages }}"
+
+- name: Install base packages
+  package:
+    name: "{{ item }}"
+    state: installed
+  with_items: "{{ packages }}"
+
+- name: Add primary user
+  user:
+    name: "{{ primary_user }}"
+    groups: "{{ primary_user }}"
+
+- name: Add nvim config dir
+  file:
+    name: ~/.config/nvim
+    recurse: true
+    state: directory
+  become: true
+  become_user: "{{ primary_user }}"
+
+- name: Add nvim autoload directory
+  file:
+    name: ~/.local/share/nvim/site/autoload/plug.vim
+    state: directory
+  become: true
+  become_user: "{{ primary_user }}"
+
+- name: Install .vimrc
+  get_url:
+    url: https://raw.githubusercontent.com/nerdsvilleceo/.files/master/.vimrc
+    dest: "~/.vimrc"
+  become: true
+  become_user: "{{ primary_user }}"
+
+- name: Install nvim config
+  get_url:
+    url: https://raw.githubusercontent.com/nerdsvilleceo/.files/master/.config/nvim/init.vim
+    dest: "~/.config/nvim/init.vim"
+  become: true
+  become_user: "{{ primary_user }}"
+
+- name: Install vim-plug
+  get_url:
+    url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    dest: "~/.local/share/nvim/site/autoload/plug.vim"
+  become: true
+  become_user: "{{ primary_user }}"
+
+- name: Install vim-plug plugins
+  command: nvim +PlugInstall +qall  # noqa 301
+  become: true
+  become_user: "{{ primary_user }}"
+
+- name: Remove build packages
+  package:
+    name: "{{ item }}"
+    state: removed
+  with_items: "{{ build_packages }}"
