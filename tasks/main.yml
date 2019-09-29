@@ -26,7 +26,7 @@
 
 - name: Add nvim autoload directory
   file:
-    name: ~/.local/share/nvim/site/autoload/plug.vim
+    name: ~/.local/share/nvim/site/autoload
     state: directory
   become: true
   become_user: "{{ primary_user }}"
@@ -48,7 +48,7 @@
 - name: Install vim-plug
   get_url:
     url: https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    dest: "~/.local/share/nvim/site/autoload/plug.vim"
+    dest: "~/.local/share/nvim/site/autoload"
   become: true
   become_user: "{{ primary_user }}"
 
