@@ -1,15 +1,13 @@
 ---
 - name: Install build packages
   package:
-    name: "{{ item }}"
+    name: "{{ build_packages }}"
     state: installed
-  with_items: "{{ build_packages }}"
 
 - name: Install base packages
   package:
-    name: "{{ item }}"
+    name: "{{ packages }}"
     state: installed
-  with_items: "{{ packages }}"
 
 - name: Install neovim
   apk:
