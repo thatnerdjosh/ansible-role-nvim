@@ -9,8 +9,8 @@ packages:
   - gcc
   - libc6-compat
   - gcc
+  - libc-dev
 build_packages:
   - make
-  - libc-dev
   - ncurses-dev
 primary_user: developer
