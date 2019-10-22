@@ -8,9 +8,9 @@ packages:
   - yarn
   - gcc
   - libc6-compat
+  - gcc
 build_packages:
   - make
-  - gcc
   - libc-dev
   - ncurses-dev
 primary_user: developer
