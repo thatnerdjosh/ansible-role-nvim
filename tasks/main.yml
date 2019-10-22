@@ -1,4 +1,9 @@
 ---
+- name: Checking for aarch64 architecture
+  set_fact:
+    host_arch: "arm64"
+  when: "'aarch64' in ansible_architecture"
+
 - name: Install build packages
   package:
     name: "{{ build_packages }}"
@@ -17,11 +22,20 @@
       - http://dl-cdn.alpinelinux.org/alpine/edge/community
       - http://dl-cdn.alpinelinux.org/alpine/edge/testing
       - http://dl-cdn.alpinelinux.org/alpine/edge/main
+  when: host_arch != "arm64"
 
 - name: Add primary user
   user:
     name: "{{ primary_user }}"
     groups: "{{ primary_user }}"
+
+- name: Install neovim (arm64)
+  get_url:
+    url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage 
+    dest: /usr/local/bin/nvim 
+    checksum: "{{ nvim_appimage_hash }}"
+    mode: '0755'
+  when: host_arch == "arm64"
 
 - name: Add home dir
   file:

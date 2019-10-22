@@ -14,3 +14,4 @@ build_packages:
   - make
   - ncurses-dev
 primary_user: developer
+nvim_appimage_hash: sha256:7874a423fe8e7f6a38539a99573a116fbd8a164279cffdae02421dd1aef67fac
