@@ -23,6 +23,14 @@
     name: "{{ primary_user }}"
     groups: "{{ primary_user }}"
 
+- name: Add home dir
+  file:
+    name: "/home/{{ primary_user }}/workspace"
+    recurse: true
+    state: directory
+    owner: "{{ primary_user }}"
+    group: "{{ primary_user }}"
+
 - name: Add nvim config dir
   file:
     name: ~/.config/nvim
