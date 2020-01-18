@@ -1,9 +1,4 @@
 ---
-- name: Checking for aarch64 architecture
-  set_fact:
-    host_arch: "arm64"
-  when: "'aarch64' in ansible_architecture"
-
 - name: Install build packages
   package:
     name: "{{ build_packages }}"
@@ -22,7 +17,7 @@
       - http://dl-cdn.alpinelinux.org/alpine/edge/community
       - http://dl-cdn.alpinelinux.org/alpine/edge/testing
       - http://dl-cdn.alpinelinux.org/alpine/edge/main
-  when: host_arch != "arm64"
+  when: ansible_architecture != "aarch64"
 
 - name: Add primary user
   user:
@@ -35,7 +30,7 @@
     dest: /usr/local/bin/nvim 
     checksum: "{{ nvim_appimage_hash }}"
     mode: '0755'
-  when: host_arch == "arm64"
+  when: ansible_architecture == "aarch64"
 
 - name: Add home dir
   file:
