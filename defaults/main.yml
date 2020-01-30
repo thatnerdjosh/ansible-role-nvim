@@ -8,7 +8,6 @@ packages:
   - yarn
   - gcc
   - libc6-compat
-  - mosh
   - gcc
   - libc-dev
 build_packages:

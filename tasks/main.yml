@@ -23,6 +23,7 @@
   user:
     name: "{{ primary_user }}"
     groups: "{{ primary_user }}"
+    password_lock: no
 
 - name: Install neovim (arm64)
   get_url:
